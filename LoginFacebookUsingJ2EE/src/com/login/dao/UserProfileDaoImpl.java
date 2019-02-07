@@ -1,19 +1,18 @@
 package com.login.dao;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.login.connection.DatabaseConnection;
-import com.sun.crypto.provider.RSACipher;
+
 
 public class UserProfileDaoImpl implements UserProfileDao {
 	PreparedStatement preparedStmt=null;
 	ResultSet resultSet=null;
 	
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void SaveUserData(UsersProfile usersProfile) {
 			try {
@@ -62,15 +61,14 @@ public class UserProfileDaoImpl implements UserProfileDao {
 			
 			
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
 		}finally {
 			try {
 				resultSet.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getLocalizedMessage());
 			}
 		}
 		 
