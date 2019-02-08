@@ -18,7 +18,6 @@ public class UsersProfile {
 	
 	public UsersProfile() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UsersProfile(String oauthProvider, String oauthUserId, String firstName, String lastName, String email,

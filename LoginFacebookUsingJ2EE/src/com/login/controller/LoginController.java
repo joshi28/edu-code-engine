@@ -7,7 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
+
 
 import com.login.dao.UserProfileDao;
 import com.login.dao.UserProfileDaoImpl;
@@ -20,8 +23,7 @@ import org.json.simple.parser.JSONParser;
  */
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-
+	final static Logger logger = Logger.getLogger(LoginController.class);
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -51,13 +53,13 @@ public class LoginController extends HttpServlet {
 					jobj.get("link").toString(), sqlDate, sqlDate);
 			UserProfileDao userdao= new UserProfileDaoImpl();
 			if(userdao.validateUserDAta(authProvider, jobj.get("email").toString())) {
-				System.out.println("User already exist");
+				logger.info("User already exist");
 			}else {
-				userdao.SaveUserData(usersProfile);
+				userdao.saveUserData(usersProfile);
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getLocalizedMessage());
 		}
 	}
 
